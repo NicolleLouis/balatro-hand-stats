@@ -39,6 +39,7 @@ class Game:
 
     def run(self):
         self.draw()
+        self.draw_pile.shuffle()
 
         while not self.is_finished():
             self.turn()

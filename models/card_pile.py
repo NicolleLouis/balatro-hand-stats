@@ -20,6 +20,10 @@ class CardPile:
     def __sub__(self, other):
         return CardPile([card for card in self.cards if card not in other.cards])
 
+    def pretty_print(self):
+        for card in self.cards:
+            print(card)
+
     def shuffle(self):
         random.shuffle(self.cards)
 
