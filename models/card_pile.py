@@ -4,10 +4,12 @@ import random
 class CardPile:
     def __init__(self, cards):
         self.cards = cards.copy()
-        self.shuffle()
+
+    def __eq__(self, other):
+        return self.cards == other.cards
 
     def __str__(self):
-        return f"{len(self.cards)} remaining cards in pile"
+        return f"{len(self.cards)} cards in pile"
 
     def shuffle(self):
         random.shuffle(self.cards)

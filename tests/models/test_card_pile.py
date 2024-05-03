@@ -18,10 +18,25 @@ def test_get_by_suit():
     assert card_pile.card_by_suit(Suit.SPADES) == 13
 
 
+def test_equality():
+    card = Card(Suit.SPADES, 2)
+    pile_1 = CardPile([card])
+    pile_2 = CardPile([card])
+    assert pile_1 == pile_2
+
+
+def test_non_equality():
+    card = Card(Suit.SPADES, 2)
+    lookalike = Card(Suit.SPADES, 2)
+    pile_1 = CardPile([card])
+    pile_2 = CardPile([lookalike])
+    assert pile_1 != pile_2
+
+
 def test_str_card_pile():
     deck = BaseDeck()
     card_pile = CardPile(deck.cards)
-    assert str(card_pile) == "52 remaining cards in pile"
+    assert str(card_pile) == "52 cards in pile"
 
 
 def test_shuffle():
