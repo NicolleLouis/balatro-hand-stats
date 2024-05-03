@@ -66,3 +66,44 @@ def test_draw_cards_from_full_hand():
     game.draw()
     assert (len(game.hand) == 8)
     assert (len(game.draw_pile) == 44)
+
+
+def test_discard_hand():
+    game_setting = GameSetting(1, 1, 8)
+    deck = BaseDeck()
+    engine = HighCardEngine()
+    game = Game(game_setting, deck, engine)
+    game.draw()
+    assert len(game.hand) == 8
+
+    game.discard(game.hand)
+    assert len(game.hand) == 0
+    assert len(game.discard_pile) == 8
+
+
+def test_turn():
+    game_setting = GameSetting(1, 1, 8)
+    deck = BaseDeck()
+    engine = HighCardEngine()
+    game = Game(game_setting, deck, engine)
+    game.draw()
+
+    game.turn()
+    assert len(game.hand) == 8
+    assert len(game.discard_pile) == 0
+    assert len(game.draw_pile) == 44
+    assert game.discard_number == 1
+
+
+def test_run():
+    game_setting = GameSetting(1, 1, 8)
+    deck = BaseDeck()
+    engine = HighCardEngine()
+    game = Game(game_setting, deck, engine)
+    game.run()
+
+    assert game.victory
+    assert game.discard_number == 0
+    assert len(game.hand) == 8
+    assert len(game.discard_pile) == 0
+    assert len(game.draw_pile) == 44

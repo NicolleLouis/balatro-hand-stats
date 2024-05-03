@@ -37,6 +37,21 @@ class Game:
 
         return False
 
+    def run(self):
+        self.draw()
+
+        while not self.is_finished():
+            self.turn()
+
+    def turn(self):
+        self.discard(self.engine.discard(self.hand, self.draw_pile))
+        self.discard_number += 1
+        self.draw()
+
     def draw(self):
         missing_cards_number = self.game_setting.card_in_hand_number - len(self.hand)
         self.hand += self.draw_pile.draw_cards(missing_cards_number)
+
+    def discard(self, cards: CardPile):
+        self.hand -= cards
+        self.discard_pile += cards

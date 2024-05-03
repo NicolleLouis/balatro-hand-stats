@@ -8,11 +8,11 @@ from models.hand_combination.hand_combination import HandCombination
 from models.hand_combination.high_card import HighCard
 
 
-def test_choose_discard():
+def test_discard():
     engine = Engine(HandCombination)
 
     with pytest.raises(NotImplementedError):
-        engine.choose_discard(CardPile([]), CardPile([]))
+        engine.discard(CardPile([]), CardPile([]))
 
 
 def test_result():

@@ -48,6 +48,31 @@ def test_addition():
     assert len(new_pile) == 104
 
 
+def test_subtraction_complete_case():
+    card = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card])
+    card_pile_2 = CardPile([card])
+    new_pile = card_pile - card_pile_2
+    assert len(new_pile) == 0
+
+
+def test_subtraction_with_non_existing_cards():
+    card = Card(Suit.SPADES, 2)
+    card_pile = CardPile([])
+    card_pile_2 = CardPile([card])
+    new_pile = card_pile - card_pile_2
+    assert len(new_pile) == 0
+
+
+def test_subtraction_with_remaining_cards():
+    card_1 = Card(Suit.SPADES, 2)
+    card_2 = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card_1, card_2])
+    card_pile_2 = CardPile([card_1])
+    new_pile = card_pile - card_pile_2
+    assert new_pile == CardPile([card_2])
+
+
 def test_shuffle():
     """
     Warning this test may randomly fail,

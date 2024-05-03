@@ -17,6 +17,9 @@ class CardPile:
     def __add__(self, other):
         return CardPile(self.cards + other.cards)
 
+    def __sub__(self, other):
+        return CardPile([card for card in self.cards if card not in other.cards])
+
     def shuffle(self):
         random.shuffle(self.cards)
 

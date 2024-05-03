@@ -15,8 +15,8 @@ def test_result_negative():
     assert not engine.result(CardPile([]))
 
 
-def test_choose_discard():
+def test_discard():
     engine = HighCardEngine()
     card_pile = BaseDeck().pile
-    discarded_pile = engine.choose_discard(card_pile, card_pile)
-    assert len(discarded_pile) == 1
+    discarded_pile = engine.discard(card_pile, card_pile)
+    assert len(discarded_pile) == 0

@@ -10,10 +10,7 @@ class FlushNaiveEngine(Engine):
     def __init__(self):
         super().__init__(Flush)
 
-    def choose_discard(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
-        if self.result(card_in_hand):
-            return CardPile([])
-
+    def get_discard_cards(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
         wrong_suit_cards = self.get_wrong_suit_cards(card_in_hand)
         return wrong_suit_cards.pick_cards(5)
 

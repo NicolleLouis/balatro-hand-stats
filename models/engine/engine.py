@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from models.card_pile import CardPile
+
 from typing import TYPE_CHECKING, Type
 
 if TYPE_CHECKING:
-    from models.card_pile import CardPile
     from models.hand_combination.hand_combination import HandCombination
 
 
@@ -11,7 +12,13 @@ class Engine:
     def __init__(self, hand_combination: Type[HandCombination]):
         self.hand_combination = hand_combination
 
-    def choose_discard(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
+    def discard(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
+        if self.result(card_in_hand):
+            return CardPile([])
+
+        return self.get_discard_cards(card_in_hand, remaining_cards)
+
+    def get_discard_cards(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
         raise NotImplementedError
 
     def result(self, card_pile: CardPile) -> str:
