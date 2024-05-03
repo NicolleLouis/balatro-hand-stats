@@ -15,15 +15,13 @@ class Deck:
         return f"{len(self.cards)} cards in deck"
 
     def suit_repartition(self):
-        return {
-            Suit.SPADES: self.pile.card_by_suit(Suit.SPADES),
-            Suit.HEARTS: self.pile.card_by_suit(Suit.HEARTS),
-            Suit.DIAMONDS: self.pile.card_by_suit(Suit.DIAMONDS),
-            Suit.CLUBS: self.pile.card_by_suit(Suit.CLUBS),
-        }
+        suit_repartition = {}
+        for suit in Suit.ALL_SUITS:
+            suit_repartition[suit] = self.pile.card_by_suit(suit)
+        return suit_repartition
 
     def value_repartition(self):
         value_repartition = {}
-        for value in range(1, 14):
+        for value in range(2, 15):
             value_repartition[value] = self.pile.card_by_value(value)
         return value_repartition

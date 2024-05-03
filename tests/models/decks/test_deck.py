@@ -30,7 +30,6 @@ def test_suit_repartition():
 def test_value_repartition():
     deck = BaseDeck()
     expected_repartition = {
-        1: 4,
         2: 4,
         3: 4,
         4: 4,
@@ -43,5 +42,6 @@ def test_value_repartition():
         11: 4,
         12: 4,
         13: 4,
+        14: 4,
     }
     assert expected_repartition == deck.value_repartition()

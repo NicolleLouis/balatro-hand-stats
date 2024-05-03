@@ -6,7 +6,7 @@ from models.decks.base_deck import BaseDeck
 def test_get_by_value():
     deck = BaseDeck()
     card_pile = CardPile(deck.cards)
-    assert card_pile.card_by_value(1) == 4
+    assert card_pile.card_by_value(2) == 4
 
 
 def test_get_by_suit():

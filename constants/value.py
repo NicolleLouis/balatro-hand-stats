@@ -1,9 +1,5 @@
 class Value:
     conversion = {
-        1: 'Ace',
-        11: 'Jack',
-        12: 'Queen',
-        13: 'King',
         2: 'Two',
         3: 'Three',
         4: 'Four',
@@ -12,7 +8,11 @@ class Value:
         7: 'Seven',
         8: 'Eight',
         9: 'Nine',
-        10: 'Ten'
+        10: 'Ten',
+        11: 'Jack',
+        12: 'Queen',
+        13: 'King',
+        14: 'Ace',
     }
 
     @classmethod

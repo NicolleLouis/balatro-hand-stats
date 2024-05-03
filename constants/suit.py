@@ -3,3 +3,10 @@ class Suit:
     HEARTS = "Hearts"
     DIAMONDS = "Diamonds"
     CLUBS = "Clubs"
+
+    ALL_SUITS = [
+        SPADES,
+        HEARTS,
+        DIAMONDS,
+        CLUBS
+    ]
