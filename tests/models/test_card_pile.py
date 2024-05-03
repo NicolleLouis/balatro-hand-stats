@@ -85,3 +85,22 @@ def test_remove_illegal_card():
 
     with pytest.raises(ValueError):
         card_pile.remove_card_pile(CardPile([lookalike]))
+
+
+def test_pick_cards():
+    card = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card])
+    random_card = card_pile.pick_cards(1)
+    assert len(random_card.cards) == 1
+
+    # Should not take card away from base pile
+    assert len(card_pile.cards) == 1
+
+
+def test_pick_too_many_cards():
+    card = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card])
+    random_card = card_pile.pick_cards(10)
+
+    # Should still take only 1 card
+    assert len(random_card.cards) == 1

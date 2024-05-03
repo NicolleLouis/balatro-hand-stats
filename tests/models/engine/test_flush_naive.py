@@ -40,6 +40,7 @@ def test_suit_with_most_cards_in_hand():
     ])
     assert engine.suit_with_most_cards_in_hand(more_hearts) == Suit.HEARTS
 
+
 def test_get_wrong_suit_cards():
     engine = FlushNaive()
     heart_1 = Card(Suit.HEARTS, 2)
@@ -52,3 +53,36 @@ def test_get_wrong_suit_cards():
     ])
     expected_result = CardPile([spade_1])
     assert engine.get_wrong_suit_cards(card_in_hands) == expected_result
+
+
+def test_choose_discards_case_flush():
+    engine = FlushNaive()
+    cards = []
+    for _ in range(1, 6):
+        cards.append(Card(Suit.SPADES, 2))
+    card_in_hand = CardPile(cards)
+
+    assert engine.choose_discard(card_in_hand, card_in_hand) == CardPile([])
+
+
+def test_choose_discard_regular_case():
+    engine = FlushNaive()
+    heart_card = Card(Suit.HEARTS, 2)
+    card_in_hand = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.SPADES, 2),
+        heart_card,
+    ])
+
+    assert engine.choose_discard(card_in_hand, card_in_hand) == CardPile([heart_card])
+
+
+def test_choose_discard_four_spades_case():
+    engine = FlushNaive()
+    cards = []
+    for _ in range(1, 5):
+        cards.append(Card(Suit.SPADES, 2))
+    card_in_hand = CardPile(cards)
+
+    assert engine.choose_discard(card_in_hand, card_in_hand) == CardPile([])
+    assert not engine.result(card_in_hand)

@@ -26,6 +26,10 @@ class CardPile:
         for card in card_pile.cards:
             self.cards.remove(card)
 
+    def pick_cards(self, card_number):
+        self.shuffle()
+        return CardPile(self.cards[:card_number])
+
     def draw_cards(self, card_number):
         drawn_cards = self.cards[:card_number]
         del self.cards[:card_number]

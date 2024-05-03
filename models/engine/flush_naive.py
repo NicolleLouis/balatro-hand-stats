@@ -14,6 +14,9 @@ class FlushNaive(Engine):
         if self.result(card_in_hand):
             return CardPile([])
 
+        wrong_suit_cards = self.get_wrong_suit_cards(card_in_hand)
+        return wrong_suit_cards.pick_cards(5)
+
     @staticmethod
     def suit_with_most_cards_in_hand(card_in_hand: CardPile) -> str:
         card_by_suit = {}
