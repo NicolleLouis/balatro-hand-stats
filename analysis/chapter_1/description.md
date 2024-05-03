@@ -7,7 +7,7 @@ Base situation is the following
 ```python
 deck = BaseDeck
 game_setting = GameSetting(1, 3, 8)
-engine = FlushNaiveEngine()
+engine = FlushV0Engine()
 ```
 
 With this configuration (8 cards in hands and 3 discard), here are the results:
@@ -38,4 +38,5 @@ Here is a table of the successive probabilities depending on the number of cards
 
 ## Conclusion
 
-Around the base stats, losing a discard is slightly more detrimental than losing 1 hand size. However it's only a 2% difference.
+Around the base stats, losing a discard is slightly more detrimental than losing 1 hand size. 
+However, it's only a 2% difference.

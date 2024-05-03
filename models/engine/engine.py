@@ -16,7 +16,8 @@ class Engine:
         if self.result(card_in_hand):
             return CardPile([])
 
-        return self.get_discard_cards(card_in_hand, remaining_cards)
+        discarded_cards = self.get_discard_cards(card_in_hand, remaining_cards)
+        return discarded_cards.pick_cards(5)
 
     def get_discard_cards(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
         raise NotImplementedError
