@@ -1,11 +1,11 @@
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.engine.flush_naive import FlushNaive
+from models.engine.flush_naive import FlushNaiveEngine
 
 
 def test_result_negative():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
 
     assert not engine.result(CardPile([
         Card(Suit.SPADES, 2)
@@ -13,7 +13,7 @@ def test_result_negative():
 
 
 def test_result_positive():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     cards = []
     for _ in range(1, 6):
         cards.append(Card(Suit.SPADES, 2))
@@ -22,7 +22,7 @@ def test_result_positive():
 
 
 def test_suit_with_most_cards_in_hand_simple():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     only_spades = CardPile([
         Card(Suit.SPADES, 2)
     ])
@@ -30,7 +30,7 @@ def test_suit_with_most_cards_in_hand_simple():
 
 
 def test_suit_with_most_cards_in_hand():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     more_hearts = CardPile([
         Card(Suit.HEARTS, 2),
         Card(Suit.HEARTS, 2),
@@ -42,7 +42,7 @@ def test_suit_with_most_cards_in_hand():
 
 
 def test_get_wrong_suit_cards():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     heart_1 = Card(Suit.HEARTS, 2)
     heart_2 = Card(Suit.HEARTS, 2)
     spade_1 = Card(Suit.SPADES, 2)
@@ -56,7 +56,7 @@ def test_get_wrong_suit_cards():
 
 
 def test_choose_discards_case_flush():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     cards = []
     for _ in range(1, 6):
         cards.append(Card(Suit.SPADES, 2))
@@ -66,7 +66,7 @@ def test_choose_discards_case_flush():
 
 
 def test_choose_discard_regular_case():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     heart_card = Card(Suit.HEARTS, 2)
     card_in_hand = CardPile([
         Card(Suit.SPADES, 2),
@@ -78,7 +78,7 @@ def test_choose_discard_regular_case():
 
 
 def test_choose_discard_four_spades_case():
-    engine = FlushNaive()
+    engine = FlushNaiveEngine()
     cards = []
     for _ in range(1, 5):
         cards.append(Card(Suit.SPADES, 2))

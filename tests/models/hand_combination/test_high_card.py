@@ -4,8 +4,7 @@ from models.hand_combination.high_card import HighCard
 
 
 def test_successful_hand():
-    deck = BaseDeck()
-    card_pile = CardPile(deck.cards)
+    card_pile = BaseDeck().pile
     assert HighCard(card_pile).result()
 
 
@@ -15,8 +14,7 @@ def test_empty_hand():
 
 
 def test_winning_hand():
-    deck = BaseDeck()
-    card_pile = CardPile(deck.cards)
+    card_pile = BaseDeck().pile
     high_card = HighCard(card_pile)
     high_card.result()
     assert high_card.hand_description == "High Card: Ace"

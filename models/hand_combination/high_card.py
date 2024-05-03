@@ -10,7 +10,7 @@ class HighCard(HandCombination):
         return False
 
     def has_at_least_a_card(self):
-        return len(self.card_pile.cards) > 0
+        return len(self.card_pile) > 0
 
     def get_highest_value(self):
         self.card_pile.cards.sort(key=lambda card: card.value, reverse=True)

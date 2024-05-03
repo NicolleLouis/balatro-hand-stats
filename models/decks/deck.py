@@ -1,18 +1,19 @@
+from typing import Optional
+
 from constants.suit import Suit
 from models.card_pile import CardPile
 
 
 class Deck:
     def __init__(self):
-        self.cards = []
+        self.pile: Optional[CardPile] = None
         self.fill_deck()
-        self.pile = CardPile(self.cards)
 
     def fill_deck(self):
         raise NotImplementedError
 
     def __str__(self):
-        return f"{len(self.cards)} cards in deck"
+        return f"{len(self.pile)} cards in deck"
 
     def suit_repartition(self):
         suit_repartition = {}

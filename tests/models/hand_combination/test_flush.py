@@ -8,8 +8,7 @@ from models.hand_combination.flush import Flush
 
 
 def test_base_deck():
-    deck = BaseDeck()
-    card_pile = CardPile(deck.cards)
+    card_pile = BaseDeck().pile
     assert Flush(card_pile).result()
 
 

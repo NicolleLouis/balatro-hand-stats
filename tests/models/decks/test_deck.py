@@ -12,7 +12,7 @@ def test_abc_deck_creation():
 
 def test_base_deck_creation():
     deck = BaseDeck()
-    assert len(deck.cards) == 52
+    assert len(deck.pile) == 52
     assert str(deck) == "52 cards in deck"
 
 

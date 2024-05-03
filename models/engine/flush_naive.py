@@ -6,7 +6,7 @@ from models.hand_combination.flush import Flush
 from models.card_pile import CardPile
 
 
-class FlushNaive(Engine):
+class FlushNaiveEngine(Engine):
     def __init__(self):
         super().__init__(Flush)
 
