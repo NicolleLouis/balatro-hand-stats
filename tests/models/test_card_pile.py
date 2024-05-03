@@ -1,4 +1,7 @@
+import pytest
+
 from constants.suit import Suit
+from models.card import Card
 from models.card_pile import CardPile
 from models.decks.base_deck import BaseDeck
 
@@ -38,7 +41,7 @@ def test_draw_cards():
     deck = BaseDeck()
     card_pile = CardPile(deck.cards)
     hand = card_pile.draw_cards(8)
-    assert len(hand) == 8
+    assert len(hand.cards) == 8
     assert len(card_pile.cards) == 44
 
 
@@ -46,5 +49,24 @@ def test_draw_too_many_cards():
     deck = BaseDeck()
     card_pile = CardPile(deck.cards)
     hand = card_pile.draw_cards(53)
-    assert len(hand) == 52
+    assert len(hand.cards) == 52
     assert len(card_pile.cards) == 0
+
+
+def test_remove_card_pile():
+    card = Card(Suit.SPADES, 2)
+    lookalike = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card, lookalike])
+    assert len(card_pile.cards) == 2
+
+    card_pile.remove_card_pile(CardPile([card]))
+    assert len(card_pile.cards) == 1
+
+
+def test_remove_illegal_card():
+    card = Card(Suit.SPADES, 2)
+    lookalike = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card])
+
+    with pytest.raises(ValueError):
+        card_pile.remove_card_pile(CardPile([lookalike]))

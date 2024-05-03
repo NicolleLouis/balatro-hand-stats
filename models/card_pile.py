@@ -20,7 +20,11 @@ class CardPile:
         matching_card = [card for card in self.cards if card.suit == suit]
         return len(matching_card)
 
+    def remove_card_pile(self, card_pile):
+        for card in card_pile.cards:
+            self.cards.remove(card)
+
     def draw_cards(self, card_number):
         drawn_cards = self.cards[:card_number]
         del self.cards[:card_number]
-        return drawn_cards
+        return CardPile(drawn_cards)

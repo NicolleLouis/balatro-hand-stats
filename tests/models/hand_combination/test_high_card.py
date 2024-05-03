@@ -1,6 +1,6 @@
 from models.card_pile import CardPile
 from models.decks.base_deck import BaseDeck
-from models.hand_combinations.high_card import HighCard
+from models.hand_combination.high_card import HighCard
 
 
 def test_successful_hand():

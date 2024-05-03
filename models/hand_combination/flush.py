@@ -1,8 +1,8 @@
 from constants.suit import Suit
-from models.hand_combinations.base import HandCombinations
+from models.hand_combination.hand_combination import HandCombination
 
 
-class Flush(HandCombinations):
+class Flush(HandCombination):
     def result(self):
         for suit in Suit.ALL_SUITS:
             if self.card_pile.card_by_suit(suit) >= 5:

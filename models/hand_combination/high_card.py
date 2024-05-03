@@ -1,8 +1,8 @@
 from constants.value import Value
-from models.hand_combinations.base import HandCombinations
+from models.hand_combination.hand_combination import HandCombination
 
 
-class HighCard(HandCombinations):
+class HighCard(HandCombination):
     def result(self):
         if self.has_at_least_a_card():
             self.hand_description = f"High Card: {self.get_highest_value()}"

@@ -4,7 +4,7 @@ from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
 from models.decks.base_deck import BaseDeck
-from models.hand_combinations.flush import Flush
+from models.hand_combination.flush import Flush
 
 
 def test_base_deck():
