@@ -1,3 +1,10 @@
+## Analysis
+
+You can read the analysis in the analysis directory, following the description.md file.
+Here is a summary
+
+- [Discard vs Hand size](analysis/chapter_1/description.md)
+
 ## How to use:
 
 Create a ProbabilityComputer with the following options:
@@ -9,10 +16,8 @@ run computer.run() to get the results.
 
 Enjoy!
 
-
 ## Current Ideas:
 
-- Impact of +1 hand size vs +1 discard on Flushes
 - Implement the suite engine
 - Impact of a suit changing tarot card on flushes
 - Impact of the abandoned deck on the suite stats
