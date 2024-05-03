@@ -12,30 +12,30 @@ engine = FlushNaiveEngine()
 
 With this configuration (8 cards in hands and 3 discard), here are the results:
 
-> Flush Probability: **83%**
+
+> Flush Probability: **92%**
 
 ## Changing the discard number
-Reducing the number of discard brings down to **52%** making it cost: **31%**
+Reducing the number of discard brings down to **76%** making it cost: **16%**
 
 Here a detail of the successive value of additional discards:
 ![discard number](discard.png)
 
 ## Changing the hand size
 
-In the other hand reducing the number of card in hand brings the probability down to **68%** making it worth **15%**
+In the other hand reducing the number of card in hand brings the probability down to **78%** making it worth **14%**
 Here is a table of the successive probabilities depending on the number of cards in hand (For 3 discard each time)
 
 | card in hand | Probability |
 |--------------|-------------|
-| 5            | 15%         |
-| 6            | 42%         |
-| 7            | 68%         |
-| 8            | 83%         |
-| 9            | 95%         |
-| 10           | 96%         |
-| 11           | 98%         |
-| 12           | 99%         |
+| 5            | 21%         |
+| 6            | 53%         |
+| 7            | 78%         |
+| 8            | 92%         |
+| 9            | 97%         |
+| 10           | 98%         |
+| 11           | 99%         |
 
 ## Conclusion
 
-Around the base stats, losing a discard is more detrimental than losing 1 hand size.
+Around the base stats, losing a discard is slightly more detrimental than losing 1 hand size. However it's only a 2% difference.

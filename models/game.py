@@ -38,8 +38,8 @@ class Game:
         return False
 
     def run(self):
-        self.draw()
         self.draw_pile.shuffle()
+        self.draw()
 
         while not self.is_finished():
             self.turn()
