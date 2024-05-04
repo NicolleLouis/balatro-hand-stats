@@ -86,3 +86,11 @@ This is quite an improvement compared to the previous version, even for a comple
 Details are here:
 
 ![Erratic V2](flushV2engine.png)
+
+## Conclusion
+
+We improved the flush engine quite a bit, which is nice.
+We also demonstrated that a non-regular distribution is beneficial for a single flush probability.
+
+The next step will be looking at the exact impact of a single suit-changing tarot card on the flush probability. 
+We will later expand on the probability of multiple flushes, which might be opposite of the single flush case.

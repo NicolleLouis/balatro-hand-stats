@@ -1,15 +1,22 @@
-from models.deck_setting import DeckSetting
-from models.decks.erratic import ErraticDeck
-from models.engine.flush.flush_1 import FlushV1Engine
+from models.decks.legacy.base_26_0_13_13 import BaseDeck_26_0_13_13
+from models.decks.legacy.base_26_9_9_8 import BaseDeck_26_9_9_8
 from models.engine.flush.flush_2 import FlushV2Engine
 from models.game_setting import GameSetting
 from models.probability_computer import ProbabilityComputer
 
 
-deck = ErraticDeck
 game_setting = GameSetting(1, 3, 8)
 engine = FlushV2Engine()
-deck_settings = DeckSetting(deck_size=19)
+run_number = 1000000
 
-computer = ProbabilityComputer(deck, game_setting, engine, 100000, deck_settings)
+print("Case 26/9/9/8")
+deck = BaseDeck_26_9_9_8
+computer = ProbabilityComputer(deck, game_setting, engine, run_number)
+computer.run()
+
+print("##########")
+
+print("Case 26/0/13/13")
+deck = BaseDeck_26_0_13_13
+computer = ProbabilityComputer(deck, game_setting, engine, run_number)
 computer.run()
