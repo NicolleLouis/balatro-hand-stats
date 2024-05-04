@@ -3,11 +3,11 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from models.card_pile import CardPile
+from models.game_setting import GameSetting
 
 if TYPE_CHECKING:
     from models.decks.deck import Deck
     from models.engine.engine import Engine
-    from models.game_setting import GameSetting
 
 
 class Game:
@@ -20,6 +20,7 @@ class Game:
         self.deck: Deck = deck
         self.engine: Engine = engine
         self.game_setting: GameSetting = game_setting
+
         self.hand_number: int = 0
         self.discard_number: int = 0
         self.draw_pile: CardPile = deck.pile

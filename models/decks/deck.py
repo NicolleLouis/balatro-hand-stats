@@ -1,13 +1,23 @@
-from typing import Optional
+from __future__ import annotations
+
+from typing import Optional, TYPE_CHECKING
 
 from constants.suit import Suit
 from models.card_pile import CardPile
 
+if TYPE_CHECKING:
+    from models.deck_setting import DeckSetting
+
 
 class Deck:
-    def __init__(self):
+    def __init__(self, deck_settings: Optional[DeckSetting] = None):
         self.pile: Optional[CardPile] = None
+        self.deck_settings = deck_settings
+
         self.fill_deck()
+
+        if self.deck_settings:
+            self.deck_settings.perform(self.pile)
 
     def fill_deck(self):
         raise NotImplementedError
