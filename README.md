@@ -4,6 +4,7 @@ You can read the analysis in the analysis directory, following the description.m
 Here is a summary
 
 - [Discard vs Hand size](analysis/chapter_1/description.md)
+- [Base vs Erratic Deck](analysis/chapter_2/description.md)
 
 ## How to use:
 
