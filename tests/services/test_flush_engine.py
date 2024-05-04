@@ -60,3 +60,67 @@ def test_get_legal_suits_just_enough():
         Card(Suit.SPADES, 2),
     ])
     assert FlushEngineService.get_legal_suits(cards_in_hand, draw_pile) == [Suit.SPADES]
+
+
+# Should discard the heart hoping for the spade, so discarding 1 card and EV is 1/2
+def test_suit_scoring():
+    cards_in_hand = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    draw_pile = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    assert FlushEngineService.score_suit(cards_in_hand, draw_pile, Suit.SPADES) == 3 / 2
+
+
+def test_best_suit_no_legal_answer():
+    cards_in_hand = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    draw_pile = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    assert FlushEngineService.get_best_suit(cards_in_hand, draw_pile) is None
+
+
+def test_best_suit_iso_density():
+    draw_pile = BaseDeck().pile
+    cards_in_hand = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    assert FlushEngineService.get_best_suit(cards_in_hand, draw_pile) == Suit.HEARTS
+
+
+def test_best_suit_iso_hand():
+    cards_in_hand = BaseDeck().pile
+    draw_pile = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    assert FlushEngineService.get_best_suit(cards_in_hand, draw_pile) == Suit.SPADES
+
+
+# Mode hearts in hand, but the spades are more likely to come
+def test_best_suit_unintuitive():
+    cards_in_hand = CardPile([
+        Card(Suit.SPADES, 2),
+        Card(Suit.SPADES, 2),
+        Card(Suit.HEARTS, 2),
+        Card(Suit.HEARTS, 2),
+        Card(Suit.HEARTS, 2),
+    ])
+    cards = []
+    for _ in range(5):
+        cards.append(Card(Suit.SPADES, 2))
+        cards.append(Card(Suit.SPADES, 2))
+        cards.append(Card(Suit.HEARTS, 2))
+    draw_pile = CardPile(cards)
+    assert FlushEngineService.get_best_suit(cards_in_hand, draw_pile) == Suit.SPADES

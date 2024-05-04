@@ -61,3 +61,28 @@ Details are here:
 - FlushV1:
 
 ![Erratic V1](FlushV1-small_erratic.png)
+
+Adding more and more cards is progressively reducing this advantage of the second improvement since,
+as soon as all flushes are legal, both engines work identically.
+
+For example, at half a deck (26 cards), the V0 engine is already at 93% and the V1 engine at 95%.
+
+## Third Engine
+
+We are adding a new improvement which is looking at the density of each suit in the draw pile and adapting the strategy
+accordingly.
+This is a bit more complex to implement, but the idea is to combine the cards in hands (certain hits) with the
+average card in the draw pile.
+So the score for each suite will be: 
+
+```python
+number_of_suite_cards_in_hand + number_of_drawn_cards * number_of_suite_cards_in_draw_pile/number_of_cards_in_draw_pile
+```
+
+> V2 Engine: **96%**
+
+This is quite an improvement compared to the previous version, even for a complete deck.
+
+Details are here:
+
+![Erratic V2](flushV2engine.png)

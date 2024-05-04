@@ -1,7 +1,7 @@
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.engine.flush_0 import FlushV0Engine
+from models.engine.flush.flush_0 import FlushV0Engine
 
 
 def test_result_negative():
