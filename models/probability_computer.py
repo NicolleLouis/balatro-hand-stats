@@ -6,9 +6,10 @@ from models.game import Game
 
 if TYPE_CHECKING:
     from models.deck.deck import Deck
-    from models.engine.engine import Engine
-    from models.game_setting import GameSetting
     from models.deck_setting import DeckSetting
+    from models.engine.engine import Engine
+    from models.event_setting import EventSetting
+    from models.game_setting import GameSetting
 
 
 class ProbabilityComputer:
@@ -19,18 +20,26 @@ class ProbabilityComputer:
             engine: Engine,
             run_number: int,
             deck_setting: Optional[DeckSetting] = None,
+            event_setting: Optional[EventSetting] = None,
     ):
         self.deck = deck
         self.game_setting = game_setting
         self.engine = engine
         self.run_number = run_number
+        self.deck_setting = deck_setting
+        self.event_setting = event_setting
+
         self.victory_number = 0
         self.victory_repartition = {}
-        self.deck_setting = deck_setting
 
     def run(self):
         for _ in range(self.run_number):
-            game = Game(self.game_setting, self.deck(self.deck_setting), self.engine)
+            game = Game(
+                self.game_setting,
+                self.deck(self.deck_setting),
+                self.engine,
+                self.event_setting,
+            )
             game.run()
             if game.victory:
                 self.add_victory(game.discard_number)

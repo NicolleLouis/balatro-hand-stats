@@ -68,3 +68,19 @@ Results:
 
 The trend is confirmed for the discard number 0 and 1. However, it's less noticeable for the discard number 2 and 3
 since we are really close to 100% at that point anyway.
+
+## Value of STCs
+
+Now that we know the optimal strategy, let's try and measure the impact on the flush probability. 
+We start from the base deck and will apply a variable number of STCs to it.
+We'll then see how the flush probability evolves.
+
+![Chart](stc-evolution.png)
+
+The impact is less and less noticeable for the third discard probability since even after 5 tarot cards it's almost
+guaranteed.
+We can note however the impact of the first-hand probability which grows steadily, the effect is not slowing down even
+after 10 tarot changes. 
+Please also note that a tarot played in a real game would have a much stronger impact since a human player would
+probably only buy the matching suit cards. And also by keeping it in hand during the game, it would increase the effect
+by picking always 3 card to change at once. 

@@ -1,13 +1,14 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from models.card_pile import CardPile
-from models.game_setting import GameSetting
 
 if TYPE_CHECKING:
     from models.deck.deck import Deck
     from models.engine.engine import Engine
+    from models.event_setting import EventSetting
+    from models.game_setting import GameSetting
 
 
 class Game:
@@ -16,10 +17,12 @@ class Game:
             game_setting: GameSetting,
             deck: Deck,
             engine: Engine,
+            event_setting: Optional[EventSetting] = None,
     ):
         self.deck: Deck = deck
         self.engine: Engine = engine
         self.game_setting: GameSetting = game_setting
+        self.event_setting: Optional[EventSetting] = event_setting
 
         self.hand_number: int = 0
         self.discard_number: int = 0
@@ -39,11 +42,16 @@ class Game:
         return False
 
     def run(self):
-        self.draw_pile.shuffle()
-        self.draw()
+        self.initialize()
 
         while not self.is_finished():
             self.turn()
+
+    def initialize(self):
+        self.draw_pile.shuffle()
+        if self.event_setting:
+            self.event_setting.perform(self.deck)
+        self.draw()
 
     def turn(self):
         self.discard(self.engine.discard(self.hand, self.draw_pile))
