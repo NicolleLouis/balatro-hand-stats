@@ -1,7 +1,7 @@
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.decks.base_deck import BaseDeck
+from models.deck.base_deck import BaseDeck
 from models.engine.high_card import HighCardEngine
 
 

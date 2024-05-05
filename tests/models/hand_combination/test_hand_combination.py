@@ -1,6 +1,6 @@
 import pytest
 
-from models.decks.base_deck import BaseDeck
+from models.deck.base_deck import BaseDeck
 from models.hand_combination.hand_combination import HandCombination
 
 

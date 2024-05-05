@@ -28,11 +28,11 @@ class Deck:
     def suit_repartition(self):
         suit_repartition = {}
         for suit in Suit.ALL_SUITS:
-            suit_repartition[suit] = self.pile.card_by_suit(suit)
+            suit_repartition[suit] = self.pile.number_of_card_with_suit(suit)
         return suit_repartition
 
     def value_repartition(self):
         value_repartition = {}
         for value in range(2, 15):
-            value_repartition[value] = self.pile.card_by_value(value)
+            value_repartition[value] = self.pile.number_of_card_with_value(value)
         return value_repartition

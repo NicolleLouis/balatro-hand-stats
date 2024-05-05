@@ -1,5 +1,5 @@
 from models.card_pile import CardPile
-from models.decks.base_deck import BaseDeck
+from models.deck.base_deck import BaseDeck
 from models.hand_combination.high_card import HighCard
 
 

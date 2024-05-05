@@ -3,17 +3,17 @@ import pytest
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.decks.base_deck import BaseDeck
+from models.deck.base_deck import BaseDeck
 
 
 def test_get_by_value():
     card_pile = BaseDeck().pile
-    assert card_pile.card_by_value(2) == 4
+    assert card_pile.number_of_card_with_value(2) == 4
 
 
 def test_get_by_suit():
     card_pile = BaseDeck().pile
-    assert card_pile.card_by_suit(Suit.SPADES) == 13
+    assert card_pile.number_of_card_with_suit(Suit.SPADES) == 13
 
 
 def test_equality():
@@ -135,3 +135,23 @@ def test_pick_too_many_cards():
 
     # Should still take only 1 card
     assert len(random_card) == 1
+
+
+def test_get_card_by_suit_single_card_case():
+    card = Card(Suit.SPADES, 2)
+    card_pile = CardPile([card])
+    assert card_pile.get_cards_with_suit(Suit.SPADES) == card_pile
+    assert card_pile.get_cards_with_suit(Suit.HEARTS) == CardPile([])
+
+
+def test_get_card_by_suit_multiple_cards_case():
+    card = Card(Suit.SPADES, 2)
+    target_pile = CardPile([card])
+    card_pile = target_pile + CardPile([
+        Card(Suit.CLUBS, 3),
+        Card(Suit.CLUBS, 4),
+        Card(Suit.CLUBS, 5),
+
+    ])
+    assert card_pile.get_cards_with_suit(Suit.SPADES) == target_pile
+    assert card_pile.get_cards_with_suit(Suit.HEARTS) == CardPile([])

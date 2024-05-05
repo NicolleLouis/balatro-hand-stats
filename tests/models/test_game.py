@@ -1,4 +1,4 @@
-from models.decks.base_deck import BaseDeck
+from models.deck.base_deck import BaseDeck
 from models.engine.high_card import HighCardEngine
 from models.game import Game
 from models.game_setting import GameSetting

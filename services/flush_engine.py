@@ -21,7 +21,7 @@ class FlushEngineService:
             legal_suits = Suit.ALL_SUITS
         card_by_suit = {}
         for suit in legal_suits:
-            card_by_suit[suit] = card_in_hand.card_by_suit(suit)
+            card_by_suit[suit] = card_in_hand.number_of_card_with_suit(suit)
         try:
             return max(card_by_suit.items(), key=lambda suit: suit[1])[0]
         except ValueError:
@@ -31,14 +31,14 @@ class FlushEngineService:
     def get_legal_suits(card_in_hand: CardPile, draw_pile: CardPile) -> List[str]:
         legal_suits = []
         for suit in Suit.ALL_SUITS:
-            if card_in_hand.card_by_suit(suit) + draw_pile.card_by_suit(suit) >= 5:
+            if card_in_hand.number_of_card_with_suit(suit) + draw_pile.number_of_card_with_suit(suit) >= 5:
                 legal_suits.append(suit)
         return legal_suits
 
     @staticmethod
     def score_suit(card_in_hand: CardPile, draw_pile: CardPile, suit: str) -> int:
-        matching_cards_in_hand = card_in_hand.card_by_suit(suit)
-        draw_pile_density = draw_pile.card_by_suit(suit)/len(draw_pile)
+        matching_cards_in_hand = card_in_hand.number_of_card_with_suit(suit)
+        draw_pile_density = draw_pile.number_of_card_with_suit(suit) / len(draw_pile)
         number_of_drawn_cards = min(5, len(card_in_hand) - matching_cards_in_hand)
         score = matching_cards_in_hand + number_of_drawn_cards * draw_pile_density
         return score

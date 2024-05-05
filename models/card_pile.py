@@ -2,11 +2,13 @@ import random
 
 
 class CardPile:
-    def __init__(self, cards):
+    def __init__(self, cards: list):
         self.cards = cards.copy()
 
     def __eq__(self, other):
-        return self.cards == other.cards
+        self_included_in_other = all(card in other.cards for card in self.cards)
+        other_included_in_self = all(card in self.cards for card in other.cards)
+        return self_included_in_other and other_included_in_self
 
     def __len__(self):
         return len(self.cards)
@@ -27,13 +29,16 @@ class CardPile:
     def shuffle(self):
         random.shuffle(self.cards)
 
-    def card_by_value(self, value):
+    def number_of_card_with_value(self, value):
         matching_card = [card for card in self.cards if card.value == value]
         return len(matching_card)
 
-    def card_by_suit(self, suit):
+    def number_of_card_with_suit(self, suit):
         matching_card = [card for card in self.cards if card.suit == suit]
         return len(matching_card)
+
+    def get_cards_with_suit(self, suit):
+        return CardPile([card for card in self.cards if card.suit == suit])
 
     def remove_card_pile(self, card_pile):
         for card in card_pile.cards:

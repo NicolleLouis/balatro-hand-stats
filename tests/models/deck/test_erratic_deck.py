@@ -1,4 +1,4 @@
-from models.decks.erratic import ErraticDeck
+from models.deck.erratic import ErraticDeck
 
 
 def test_erratic_creation():

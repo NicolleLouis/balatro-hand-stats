@@ -1,6 +1,6 @@
 import pytest
 
-from models.decks.deck import Deck
+from models.deck.deck import Deck
 
 
 def test_abc_deck_creation():

@@ -1,12 +1,12 @@
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.decks.deck import Deck
+from models.deck.deck import Deck
 
 
-# Base deck after progressively converting cards into Spades, trying to remain even
+# Base deck, but we deleted the Clubs and made them Spades
 # noinspection PyPep8Naming
-class BaseDeck_26_9_9_8(Deck):
+class BaseDeck_26_0_13_13(Deck):
     def fill_deck(self):
         cards = []
         for value in range(2, 15):
@@ -16,6 +16,6 @@ class BaseDeck_26_9_9_8(Deck):
 
     @staticmethod
     def generate_card(suit, value):
-        if value < 10 or value == 10 and suit in [Suit.HEARTS, Suit.DIAMONDS]:
-            return Card(suit, value)
-        return Card(Suit.SPADES, value)
+        if suit == Suit.CLUBS:
+            return Card(Suit.SPADES, value)
+        return Card(suit, value)

@@ -1,6 +1,6 @@
 from constants.suit import Suit
 from models.deck_setting import DeckSetting
-from models.decks.base_deck import BaseDeck
+from models.deck.base_deck import BaseDeck
 
 
 def test_base_deck_creation():

@@ -6,7 +6,7 @@ from models.card_pile import CardPile
 from models.game_setting import GameSetting
 
 if TYPE_CHECKING:
-    from models.decks.deck import Deck
+    from models.deck.deck import Deck
     from models.engine.engine import Engine
 
 

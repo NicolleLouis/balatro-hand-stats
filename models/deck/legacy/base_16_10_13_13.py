@@ -1,7 +1,7 @@
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.decks.deck import Deck
+from models.deck.deck import Deck
 
 
 # Base deck after an STC making it 16 spades, 10 clubs and the rest regular

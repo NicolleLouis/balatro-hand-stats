@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Type, Optional
 from models.game import Game
 
 if TYPE_CHECKING:
-    from models.decks.deck import Deck
+    from models.deck.deck import Deck
     from models.engine.engine import Engine
     from models.game_setting import GameSetting
     from models.deck_setting import DeckSetting
