@@ -33,7 +33,7 @@ class STC(Event):
 
     @staticmethod
     def pick_cards_to_switch(cards: CardPile, target_suits) -> CardPile:
-        cards_to_switch = CardPile([])
+        cards_to_switch = CardPile()
         for suit in target_suits:
             if len(cards_to_switch) >= 3:
                 break

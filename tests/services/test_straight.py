@@ -16,7 +16,7 @@ def test_next_5_values_ace():
 
 
 def test_cards_in_suit_from_low_value():
-    pile = CardPile([
+    pile = CardPile({
         Card(Suit.SPADES, 2),
         Card(Suit.HEARTS, 2),
         Card(Suit.DIAMONDS, 4),
@@ -24,7 +24,7 @@ def test_cards_in_suit_from_low_value():
         Card(Suit.CLUBS, 6),
         Card(Suit.CLUBS, 7),
         Card(Suit.CLUBS, 8),
-    ])
+    })
     assert StraightService.cards_in_suit_from_low_value(pile, 2) == 3
 
 
@@ -40,7 +40,7 @@ def test_get_legal_low_values_case_abandoned_deck():
 
 
 def test_get_legal_low_values_case_custom_selection():
-    all_cards = CardPile([
+    all_cards = CardPile({
         Card(Suit.DIAMONDS, 14),
         Card(Suit.HEARTS, 2),
         Card(Suit.SPADES, 3),
@@ -48,5 +48,29 @@ def test_get_legal_low_values_case_custom_selection():
         Card(Suit.CLUBS, 5),
         Card(Suit.CLUBS, 7),
         Card(Suit.HEARTS, 9),
-    ])
-    assert sorted(StraightService.get_legal_low_values(all_cards)) == [14]
+    })
+    assert StraightService.get_legal_low_values(all_cards) == [14]
+
+
+def test_holes_case_false():
+    card_pile = CardPile({
+        Card(Suit.DIAMONDS, 14),
+        Card(Suit.HEARTS, 2),
+        Card(Suit.SPADES, 4),
+        Card(Suit.CLUBS, 5),
+        Card(Suit.CLUBS, 7),
+        Card(Suit.HEARTS, 9),
+    })
+    assert StraightService.has_holes(card_pile, 14)
+
+
+def test_holes_case_true():
+    card_pile = CardPile({
+        Card(Suit.DIAMONDS, 14),
+        Card(Suit.HEARTS, 2),
+        Card(Suit.SPADES, 3),
+        Card(Suit.CLUBS, 6),
+        Card(Suit.CLUBS, 7),
+        Card(Suit.HEARTS, 9),
+    })
+    assert not StraightService.has_holes(card_pile, 14)

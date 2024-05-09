@@ -3,8 +3,8 @@ from services.straight import StraightService
 
 
 class StraightV1Engine(StraightEngine):
-    @staticmethod
-    def get_straight_score(card_in_hand, low_value):
+    @classmethod
+    def get_straight_score(cls, card_in_hand, remaining_cards, low_value):
         return StraightService.cards_in_suit_from_low_value(card_in_hand, low_value)
 
     @staticmethod

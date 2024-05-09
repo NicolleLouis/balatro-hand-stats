@@ -1,4 +1,4 @@
-##Hand-Size vs discard number
+# Hand-Size vs discard number
 
 The comparison is for the base deck looking for Flushes.
 The idea is to estimate the relative power of additional cards in hands versus additional discards. 

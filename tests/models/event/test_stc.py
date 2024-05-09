@@ -62,19 +62,18 @@ def test_pick_cards_to_switch_should_pick_only_from_target_suits():
 
 def test_pick_cards_to_switch_single_suit():
     event = STC(BaseDeck())
-    club_pile = CardPile([
+    club_pile = CardPile({
         Card(Suit.CLUBS, 2),
         Card(Suit.CLUBS, 3),
         Card(Suit.CLUBS, 4),
-    ])
-    cards = club_pile + CardPile([
+    })
+    cards = club_pile + CardPile({
         Card(Suit.SPADES, 2),
         Card(Suit.SPADES, 3),
         Card(Suit.SPADES, 4),
         Card(Suit.DIAMONDS, 8),
         Card(Suit.DIAMONDS, 9),
-
-    ])
+    })
     target_suits = [Suit.CLUBS, Suit.DIAMONDS]
     cards_to_switch = event.pick_cards_to_switch(cards, target_suits)
     assert cards_to_switch == club_pile
@@ -82,19 +81,18 @@ def test_pick_cards_to_switch_single_suit():
 
 def test_pick_cards_to_switch_multiple_suits():
     event = STC(BaseDeck())
-    switch_cards = CardPile([
+    switch_cards = CardPile({
         Card(Suit.CLUBS, 2),
         Card(Suit.HEARTS, 3),
         Card(Suit.DIAMONDS, 4),
-    ])
-    cards = switch_cards + CardPile([
+    })
+    cards = switch_cards + CardPile({
         Card(Suit.SPADES, 2),
         Card(Suit.SPADES, 3),
         Card(Suit.SPADES, 4),
         Card(Suit.SPADES, 8),
         Card(Suit.SPADES, 9),
-
-    ])
+    })
     target_suits = [Suit.CLUBS, Suit.DIAMONDS, Suit.HEARTS]
     cards_to_switch = event.pick_cards_to_switch(cards, target_suits)
     assert cards_to_switch == switch_cards
@@ -102,11 +100,11 @@ def test_pick_cards_to_switch_multiple_suits():
 
 def test_transform_cards():
     event = STC(BaseDeck())
-    cards = CardPile([
+    cards = CardPile({
         Card(Suit.CLUBS, 2),
         Card(Suit.HEARTS, 3),
         Card(Suit.DIAMONDS, 4),
-    ])
+    })
     event.transform_cards(cards)
     for card in cards.cards:
         assert card.suit == event.suit

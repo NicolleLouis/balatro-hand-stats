@@ -8,14 +8,14 @@ from models.deck.deck import Deck
 # noinspection PyPep8Naming
 class BaseDeck_16_12_12_12(Deck):
     def fill_deck(self):
-        cards = []
+        cards = set()
         # Create all suited cards except Aces
         for value in range(2, 14):
             for suit in Suit.ALL_SUITS:
-                cards.append(Card(suit, value))
+                cards.add(Card(suit, value))
 
         # Create all Aces as Spades
         for _ in range(4):
-            cards.append(Card(Suit.SPADES, 14))
+            cards.add(Card(Suit.SPADES, 14))
 
         self.pile = CardPile(cards)

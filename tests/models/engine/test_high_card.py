@@ -7,12 +7,12 @@ from models.engine.high_card import HighCardEngine
 
 def test_result_positive():
     engine = HighCardEngine()
-    assert engine.result(CardPile([Card(Suit.SPADES, 2)]))
+    assert engine.result(CardPile({Card(Suit.SPADES, 2)}))
 
 
 def test_result_negative():
     engine = HighCardEngine()
-    assert not engine.result(CardPile([]))
+    assert not engine.result(CardPile())
 
 
 def test_discard():

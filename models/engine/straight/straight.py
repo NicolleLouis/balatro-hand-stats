@@ -10,6 +10,9 @@ class StraightEngine(Engine):
 
     def get_discard_cards(self, card_in_hand, remaining_cards):
         best_low_value = self.get_best_low_value(card_in_hand, remaining_cards)
+        if best_low_value is None:
+            return CardPile()
+
         best_straight = StraightService.next_5_values(best_low_value)
         duplicate_cards = self.duplicate_discard_cards(card_in_hand, best_straight)
         outside_cards = self.outside_cards(card_in_hand, best_straight)
@@ -18,13 +21,13 @@ class StraightEngine(Engine):
     @staticmethod
     def outside_cards(card_in_hand, best_straight):
         return CardPile(
-            [card for card in card_in_hand.cards if card.value not in best_straight]
+            {card for card in card_in_hand.cards if card.value not in best_straight}
         )
 
     # Get all the cards with duplicate_values
     @staticmethod
     def duplicate_discard_cards(card_in_hand, best_straight):
-        discard_cards = CardPile([])
+        discard_cards = CardPile()
         for value in best_straight:
             number_of_cards = card_in_hand.number_of_card_with_value(value)
             if number_of_cards > 1:
@@ -35,11 +38,14 @@ class StraightEngine(Engine):
     def get_best_low_value(cls, card_in_hand, remaining_cards):
         straight_score = {}
         for value in cls.possible_values(card_in_hand, remaining_cards):
-            straight_score[value] = cls.get_straight_score(card_in_hand, value)
-        return max(straight_score, key=straight_score.get)
+            straight_score[value] = cls.get_straight_score(card_in_hand, remaining_cards, value)
+        try:
+            return max(straight_score, key=straight_score.get)
+        except ValueError:
+            return None
 
-    @staticmethod
-    def get_straight_score(card_in_hand, low_value):
+    @classmethod
+    def get_straight_score(cls, card_in_hand, remaining_cards, low_value):
         raise NotImplementedError
 
     @staticmethod

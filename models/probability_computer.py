@@ -46,13 +46,13 @@ class ProbabilityComputer:
         with Pool(cpu_count()) as process_pool:
             results = process_pool.map(self.run_single_game, range(self.run_number))
             for result in results:
-                if result:
+                if result is not None:
                     self.add_victory(result)
 
     def run_experiments_without_multithread(self):
         for _ in range(self.run_number):
             result = self.run_single_game(_)
-            if result:
+            if result is not None:
                 self.add_victory(result)
 
     def run_single_game(self, _):
@@ -65,6 +65,7 @@ class ProbabilityComputer:
         game.run()
         if game.victory:
             return game.discard_number
+        return None
 
     def display_result(self):
         print(f"Hand Probability: {self.probability(self.victory_number)}%")

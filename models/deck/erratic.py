@@ -8,9 +8,9 @@ from models.deck.deck import Deck
 
 class ErraticDeck(Deck):
     def fill_deck(self):
-        cards = []
+        cards = set()
         for _ in range(52):
-            cards.append(self.generate_card())
+            cards.add(self.generate_card())
         self.pile = CardPile(cards)
 
     @staticmethod

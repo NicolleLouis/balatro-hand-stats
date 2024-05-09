@@ -9,7 +9,7 @@ def test_successful_hand():
 
 
 def test_empty_hand():
-    card_pile = CardPile([])
+    card_pile = CardPile()
     assert not HighCard(card_pile).result()
 
 

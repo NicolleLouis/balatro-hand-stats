@@ -8,10 +8,10 @@ from models.deck.deck import Deck
 # noinspection PyPep8Naming
 class BaseDeck_26_0_13_13(Deck):
     def fill_deck(self):
-        cards = []
+        cards = set()
         for value in range(2, 15):
             for suit in Suit.ALL_SUITS:
-                cards.append(self.generate_card(suit, value))
+                cards.add(self.generate_card(suit, value))
         self.pile = CardPile(cards)
 
     @staticmethod

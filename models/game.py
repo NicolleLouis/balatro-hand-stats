@@ -29,8 +29,8 @@ class Game:
         self.hand_number: int = 0
         self.discard_number: int = 0
         self.draw_pile: CardPile = deck.pile
-        self.discard_pile: CardPile = CardPile([])
-        self.hand: CardPile = CardPile([])
+        self.discard_pile: CardPile = CardPile()
+        self.hand: CardPile = CardPile()
         self.victory: bool = False
 
     def is_finished(self) -> bool:
@@ -56,9 +56,9 @@ class Game:
             print(f"Victory: {self.victory}")
 
     def initialize(self):
-        self.draw_pile.shuffle()
         if self.event_setting:
             self.event_setting.perform(self.deck)
+
         self.draw()
 
     def turn(self):

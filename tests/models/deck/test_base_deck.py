@@ -51,6 +51,6 @@ def test_deck_downsizing_randomness():
     deck_settings = DeckSetting(deck_size=1)
     deck_1 = BaseDeck(deck_settings=deck_settings)
     deck_2 = BaseDeck(deck_settings=deck_settings)
-    card_1 = deck_1.pile.cards[0]
-    card_2 = deck_2.pile.cards[0]
+    card_1 = deck_1.pile.cards.pop()
+    card_2 = deck_2.pile.cards.pop()
     assert card_1.value != card_2.value or card_1.suit != card_2.suit

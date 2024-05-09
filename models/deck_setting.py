@@ -17,5 +17,4 @@ class DeckSetting:
 
     def adapt_size(self, card_pile: CardPile) -> None:
         if self.deck_size is not None:
-            card_pile.shuffle()
             card_pile.draw_cards(len(card_pile) - self.deck_size)

@@ -13,8 +13,8 @@ class HighCard(HandCombination):
         return len(self.card_pile) > 0
 
     def get_highest_value(self):
-        self.card_pile.cards.sort(key=lambda card: card.value, reverse=True)
-        return Value.translate(self.card_pile.cards[0].value)
+        highest_card = max(self.card_pile.cards, key=lambda card: card.value)
+        return Value.translate(highest_card.value)
 
     def __str__(self):
         return "High Card"

@@ -14,7 +14,7 @@ class Engine:
 
     def discard(self, card_in_hand: CardPile, remaining_cards: CardPile) -> CardPile:
         if self.result(card_in_hand):
-            return CardPile([])
+            return CardPile()
 
         discarded_cards = self.get_discard_cards(card_in_hand, remaining_cards)
         return discarded_cards.pick_cards(5)

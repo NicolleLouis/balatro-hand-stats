@@ -12,12 +12,12 @@ def test_discard():
     engine = Engine(HandCombination)
 
     with pytest.raises(NotImplementedError):
-        engine.discard(CardPile([]), CardPile([]))
+        engine.discard(CardPile(set()), CardPile(set()))
 
 
 def test_result():
     engine = Engine(HighCard)
 
-    assert engine.result(CardPile([
+    assert engine.result(CardPile({
         Card(Suit.SPADES, 2)
-    ]))
+    }))

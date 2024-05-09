@@ -6,10 +6,10 @@ from models.deck.deck import Deck
 
 class AbandonedDeck(Deck):
     def fill_deck(self):
-        cards = []
+        cards = set()
         for value in range(2, 11):
             for suit in Suit.ALL_SUITS:
-                cards.append(Card(suit, value))
+                cards.add(Card(suit, value))
         for suit in Suit.ALL_SUITS:
-            cards.append(Card(suit, 14))
+            cards.add(Card(suit, 14))
         self.pile = CardPile(cards)

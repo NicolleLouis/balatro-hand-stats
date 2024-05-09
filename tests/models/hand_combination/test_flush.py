@@ -13,24 +13,24 @@ def test_base_deck():
 
 
 def test_empty_hand():
-    card_pile = CardPile([])
+    card_pile = CardPile()
     assert not Flush(card_pile).result()
 
 
 def test_closest_hand():
-    cards = []
+    cards = set()
     for suite in Suit.ALL_SUITS:
         for value in range(2, 6):
-            cards.append(Card(suit=suite, value=value))
+            cards.add(Card(suit=suite, value=value))
     card_pile = CardPile(cards)
     assert not Flush(card_pile).result()
 
 
 def test_winning_hand():
     suit = random.choice(Suit.ALL_SUITS)
-    cards = []
+    cards = set()
     for _ in range(1, 6):
-        cards.append(Card(suit=suit, value=random.choice(range(2, 15))))
+        cards.add(Card(suit=suit, value=random.choice(range(2, 15))))
     card_pile = CardPile(cards)
     flush = Flush(card_pile)
     flush.result()
