@@ -10,16 +10,14 @@ from models.probability_computer import ProbabilityComputer
 
 game_setting = GameSetting(1, 3, 8)
 engine = StraightV1Engine()
-run_number = 100000
+run_number = 100
 
 computer = ProbabilityComputer(
         game_setting=game_setting,
         engine=engine,
         run_number=run_number,
         deck=AbandonedDeck,
+        multithread=False
     )
 
-start_time = time.time()
 computer.run()
-end_time = time.time()
-print(f"Time used: {end_time - start_time}")

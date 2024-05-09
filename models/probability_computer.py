@@ -22,6 +22,7 @@ class ProbabilityComputer:
             run_number: int,
             deck_setting: Optional[DeckSetting] = None,
             event_setting: Optional[EventSetting] = None,
+            multithread: bool = True,
     ):
         self.deck = deck
         self.game_setting = game_setting
@@ -29,17 +30,30 @@ class ProbabilityComputer:
         self.run_number = run_number
         self.deck_setting = deck_setting
         self.event_setting = event_setting
+        self.multithread = multithread
 
         self.victory_number = 0
         self.victory_repartition = {}
 
     def run(self):
+        if self.multithread:
+            self.run_experiments_with_multithread()
+        else:
+            self.run_experiments_without_multithread()
+        self.display_result()
+
+    def run_experiments_with_multithread(self):
         with Pool(cpu_count()) as process_pool:
             results = process_pool.map(self.run_single_game, range(self.run_number))
             for result in results:
                 if result:
                     self.add_victory(result)
-        self.display_result()
+
+    def run_experiments_without_multithread(self):
+        for _ in range(self.run_number):
+            result = self.run_single_game(_)
+            if result:
+                self.add_victory(result)
 
     def run_single_game(self, _):
         game = Game(
