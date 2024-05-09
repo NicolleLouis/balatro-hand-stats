@@ -18,11 +18,13 @@ class Game:
             deck: Deck,
             engine: Engine,
             event_setting: Optional[EventSetting] = None,
+            visual: bool = False,
     ):
         self.deck: Deck = deck
         self.engine: Engine = engine
         self.game_setting: GameSetting = game_setting
         self.event_setting: Optional[EventSetting] = event_setting
+        self.visual = visual
 
         self.hand_number: int = 0
         self.discard_number: int = 0
@@ -45,7 +47,13 @@ class Game:
         self.initialize()
 
         while not self.is_finished():
+            if self.visual:
+                self.pretty_print()
             self.turn()
+
+        if self.visual:
+            self.pretty_print()
+            print(f"Victory: {self.victory}")
 
     def initialize(self):
         self.draw_pile.shuffle()
@@ -65,3 +73,9 @@ class Game:
     def discard(self, cards: CardPile):
         self.hand -= cards
         self.discard_pile += cards
+
+    def pretty_print(self):
+        print(f"Discard Number {self.discard_number}")
+        print(f"Hand: ")
+        self.hand.pretty_print()
+        print("####################")

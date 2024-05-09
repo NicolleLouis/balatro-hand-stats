@@ -1,5 +1,5 @@
 class Value:
-    ALL_SUIT_LOW_VALUES = [
+    ALL_STRAIGHT_LOW_VALUES = [
         14,
         2,
         3,

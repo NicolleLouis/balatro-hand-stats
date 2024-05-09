@@ -30,18 +30,19 @@ class CardPile:
         random.shuffle(self.cards)
 
     def number_of_card_with_value(self, value):
-        matching_card = [card for card in self.cards if card.value == value]
-        return len(matching_card)
+        return sum(card.value == value for card in self.cards)
 
     def number_of_card_with_suit(self, suit):
-        matching_card = [card for card in self.cards if card.suit == suit]
-        return len(matching_card)
+        return sum(card.suit == suit for card in self.cards)
 
     def contains_at_least_a_value_card(self, value):
-        return self.number_of_card_with_value(value) > 0
+        return any(card.value == value for card in self.cards)
 
     def get_cards_with_suit(self, suit):
         return CardPile([card for card in self.cards if card.suit == suit])
+
+    def get_cards_with_value(self, value):
+        return CardPile([card for card in self.cards if card.value == value])
 
     def remove_card_pile(self, card_pile):
         for card in card_pile.cards:
