@@ -1,9 +1,15 @@
 import random
+import uuid
+from functools import lru_cache
 
 
 class CardPile:
     def __init__(self, cards: list):
         self.cards = cards.copy()
+        self.id = uuid.uuid4()
+
+    def __hash__(self):
+        return self.id.int
 
     def __eq__(self, other):
         self_included_in_other = all(card in other.cards for card in self.cards)
@@ -35,6 +41,7 @@ class CardPile:
     def number_of_card_with_suit(self, suit):
         return sum(card.suit == suit for card in self.cards)
 
+    @lru_cache(maxsize=None)
     def contains_at_least_a_value_card(self, value):
         return any(card.value == value for card in self.cards)
 
