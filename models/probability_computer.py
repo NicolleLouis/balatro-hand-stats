@@ -1,4 +1,5 @@
 from __future__ import annotations
+from multiprocessing import Pool, cpu_count
 
 from typing import TYPE_CHECKING, Type, Optional
 
@@ -33,17 +34,23 @@ class ProbabilityComputer:
         self.victory_repartition = {}
 
     def run(self):
-        for _ in range(self.run_number):
-            game = Game(
-                self.game_setting,
-                self.deck(self.deck_setting),
-                self.engine,
-                self.event_setting,
-            )
-            game.run()
-            if game.victory:
-                self.add_victory(game.discard_number)
+        with Pool(cpu_count()) as process_pool:
+            results = process_pool.map(self.run_single_game, range(self.run_number))
+            for result in results:
+                if result:
+                    self.add_victory(result)
         self.display_result()
+
+    def run_single_game(self, _):
+        game = Game(
+            self.game_setting,
+            self.deck(self.deck_setting),
+            self.engine,
+            self.event_setting,
+        )
+        game.run()
+        if game.victory:
+            return game.discard_number
 
     def display_result(self):
         print(f"Hand Probability: {self.probability(self.victory_number)}%")

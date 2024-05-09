@@ -6,6 +6,7 @@ Here is a summary
 - [Discard vs Hand size](analysis/chapter_1/description.md)
 - [Base vs Erratic Deck](analysis/chapter_2/description.md)
 - [Impact of STC (Suit-change Tarot Card)](analysis/chapter_3/description.md)
+- [Straight Analysis](analysis/chapter_4/description.md)
 
 ## How to use:
 

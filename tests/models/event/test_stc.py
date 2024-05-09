@@ -11,14 +11,14 @@ def test_legal_suits_case_even():
     deck = BaseDeck()
     event = STC(deck)
     event.suit = Suit.SPADES
-    assert event.legal_suits().sort() == [Suit.CLUBS, Suit.HEARTS, Suit.DIAMONDS].sort()
+    assert sorted(event.legal_suits()) == sorted([Suit.CLUBS, Suit.HEARTS, Suit.DIAMONDS])
 
 
 def test_legal_suits_case_uneven():
     deck = TestingDeckUnevenRepartition()
     event = STC(deck)
     event.suit = Suit.CLUBS
-    assert event.legal_suits().sort() == [Suit.DIAMONDS, Suit.HEARTS].sort()
+    assert sorted(event.legal_suits()) == sorted([Suit.DIAMONDS, Suit.HEARTS])
 
 
 # Always at most 3 suits legally transformable since the bigger one will always be illegal

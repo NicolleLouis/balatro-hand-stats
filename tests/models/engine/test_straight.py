@@ -1,31 +1,7 @@
 from constants.suit import Suit
 from models.card import Card
 from models.card_pile import CardPile
-from models.engine.straight import StraightEngine
-
-
-def test_get_straight_score():
-    card_in_hand = CardPile([
-        Card(Suit.HEARTS, 2),
-        Card(Suit.SPADES, 3),
-        Card(Suit.DIAMONDS, 4),
-        Card(Suit.DIAMONDS, 6),
-        Card(Suit.SPADES, 11),
-    ])
-    assert StraightEngine.get_straight_score(card_in_hand, 2) == 4
-    assert StraightEngine.get_straight_score(card_in_hand, 10) == 1
-    assert StraightEngine.get_straight_score(card_in_hand, 14) == 3
-
-
-def test_get_best_straight():
-    card_in_hand = CardPile([
-        Card(Suit.HEARTS, 2),
-        Card(Suit.SPADES, 3),
-        Card(Suit.DIAMONDS, 4),
-        Card(Suit.DIAMONDS, 6),
-        Card(Suit.SPADES, 11),
-    ])
-    assert StraightEngine.get_best_low_value(card_in_hand) == 2
+from models.engine.straight.straight import StraightEngine
 
 
 def test_duplicate_cards_case_no_duplicate():

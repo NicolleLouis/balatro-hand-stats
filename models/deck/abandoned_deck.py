@@ -7,7 +7,7 @@ from models.deck.deck import Deck
 class AbandonedDeck(Deck):
     def fill_deck(self):
         cards = []
-        for value in range(2, 10):
+        for value in range(2, 11):
             for suit in Suit.ALL_SUITS:
                 cards.append(Card(suit, value))
         for suit in Suit.ALL_SUITS:
