@@ -37,6 +37,9 @@ class CardPile:
         matching_card = [card for card in self.cards if card.suit == suit]
         return len(matching_card)
 
+    def contains_at_least_a_value_card(self, value):
+        return self.number_of_card_with_value(value) > 0
+
     def get_cards_with_suit(self, suit):
         return CardPile([card for card in self.cards if card.suit == suit])
 
