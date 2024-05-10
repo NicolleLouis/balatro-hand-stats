@@ -18,10 +18,3 @@ Create a ProbabilityComputer with the following options:
 run computer.run() to get the results. 
 
 Enjoy!
-
-## Current Ideas:
-
-- Impact of a suit changing tarot card on flushes
-- Implement the suite engine
-- Impact of the abandoned deck on the suite stats
-- Multiple hand probability
